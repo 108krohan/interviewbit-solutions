@@ -1,0 +1,39 @@
+/*
+
+Given a collection of intervals, merge all overlapping intervals.
+
+For example:
+
+Given [1,3],[2,6],[8,10],[15,18],
+
+return [1,6],[8,10],[15,18].
+
+Make sure the returned intervals are sorted.
+
+*/
+ 
+ int comp(Interval a, Interval b) {
+     return a.start < b.start;
+ }
+ 
+vector<Interval> Solution::merge(vector<Interval> &A) {
+
+    sort(A.begin(), A.end(), comp); 
+    vector<Interval> result;
+    if(A.size() == 0) {
+        return A;
+    }
+    result.push_back(A.at(0)); 
+    for(int i = 1; i < A.size(); i++) {
+        
+        if(A.at(i).start > result.at(result.size() - 1).end) {
+            result.push_back(A.at(i)); 
+        }
+        else {
+            result.at(result.size() - 1).end = 
+               max(result.at(result.size() - 1).end, A.at(i).end);
+        }
+    }
+    
+    return result;
+}
