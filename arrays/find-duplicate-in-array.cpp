@@ -16,19 +16,22 @@ If there is no duplicate, output -1
 
 */
 
-int Solution::repeatedNumber(const vector<int> &A) {
-  int slow = A[0];
-  int fast = A[A[0]];
-  while (slow != fast) {
-    slow = A[slow];
-    fast = A[A[fast]];
-  }
+// the idea here is quite simple: 
+// xor of a number with itself makes it 0.
+// so we take XOR of all guys, and take XOR of all numbers from 1 to n
+// so the number that repeats would come out thrice. 
 
-  fast = 0;
-  while (slow != fast) {
-    slow = A[slow];
-    fast = A[fast];
-  }
-  if(slow==0) return -1;
-  return slow;
+// but won't the number that never comes come out once? 
+// i have left this unfigured out, let me know if you do
+
+int Solution::repeatedNumber(const vector<int> &A) {
+    int i,xor1=0;
+    for(i=1;i<A.size();i++)
+    {
+        xor1^=A[i];
+        xor1^=i;
+    }
+    xor1^=A[0];
+
+    return xor1;
 }
