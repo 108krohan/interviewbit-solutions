@@ -14,15 +14,16 @@ Do not allocate extra space for another array, you must do this in place with co
 */
 
 int Solution::removeDuplicates(vector<int> &A) {
-    int a_new = 0;
-    int a = 0; 
-    if(A.size() == 1) return 1; 
-    for(int a = 0; a + 1 < A.size(); a++) {
-        if(A.at(a) != A.at(a + 1)) {
-            A.at(a_new) = A.at(a); 
-            a_new += 1; 
+    if(A.size() == 0)
+        return A.size();
+    int k = 0;
+    for(int i=0;i<A.size();i++){
+        if (A[i] != A[k]){
+            A[k+1] = A[i];
+            k++;
         }
     }
-    A.at(a_new)
-    return a_new + 1; 
+    A.erase(A.begin()+k+1,A.end());
+    return k+1;
 }
+
