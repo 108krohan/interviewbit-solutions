@@ -49,3 +49,21 @@ int Solution::trap(const vector<int> &a) {
     return water;
 }
 
+/*
+int Solution::trap(const vector<int> &A) {
+    stack<int> st; 
+    int result = 0; 
+    for(int i = 0; i < A.size();i++) {
+        int element = A.at(i);
+        while(!st.empty()&&element > A.at(st.top())) {
+            int indice = st.top(); 
+            st.pop();
+            if(!st.empty()) {
+                result += (i - 1 - st.top()) * (min(A.at(st.top()), element) - A.at(indice));
+            }
+        }
+        st.push(i);
+    }
+    return result;
+}
+*/
